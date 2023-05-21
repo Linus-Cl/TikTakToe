@@ -32,20 +32,18 @@ namespace TikTakToe
         {
             for (int i = 0; i < size; i++)
             {
-                if (i > 0)
+
+                for (int k = 0; k < size - 1; k++)
                 {
-                    for (int k = 0; k < (2*size)-1; k++)
-                    {
-                        Console.Write("     |");
-                        Console.Write("_____");
-                        Console.Write("     |");
-                    }
-                    Console.Write("\n");
+                    Console.Write("     |");
                 }
+                Console.Write("     ");
+                Console.Write("\n");
+
                 for (int j = 0; j < size; j++)
                 {
                     char c = ' ';
-                    if (field[i,j] == 0)
+                    if (field[i, j] == 0)
                     {
                         c = 'X';
                     }
@@ -54,13 +52,39 @@ namespace TikTakToe
                         c = 'O';
                     }
 
-                    Console.Write("  "+c + "  |");
-                    if (j==size-1)
+
+                    if (j == size - 1)
                     {
-                        Console.Write(c+"\n");
+                        Console.Write("  " + c + "  \n");
+                        break;
                     }
+                    Console.Write("  " + c + "  |");
+                }
+
+                if (i < size-1) { 
+                    for (int k = 0; k < size - 1; k++)
+                    {
+                        Console.Write("_____|");
+                    }
+                    Console.Write("_____\n");
+                }
+                else
+                {
+                    for (int k = 0; k < size - 1; k++)
+                    {
+                        Console.Write("     |");
+                    }
+                    Console.Write("     \n");
                 }
             }
         }
     }
 }
+
+
+/*
+     |     |     
+  X  |  O  |     
+_____|     |     
+
+*/
