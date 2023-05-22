@@ -26,6 +26,7 @@ namespace TikTakToe
 
                 int[] coords = { 0, 0 };
 
+                //coords = getCoords();
 
                 while (!validCoords)
                 {
@@ -36,22 +37,26 @@ namespace TikTakToe
                         validCoords = true;
                         break;
                     }
-                    Console.WriteLine("Invalid coordinates! Try again.");
+                    Console.WriteLine("Invalid Coordinates! Try again.");
                 }
 
-                m.field[coords[0], coords[1]]= activePlayerIndex;
+                m.field[coords[1], coords[0]]= activePlayerIndex;
+                Console.WriteLine();
+                m.printMap();
+                Console.WriteLine();
             }
         }
 
-         static int[] getCoords()
+        static int[] getCoords()
         {
             int[] coords = new int[2];
             Console.WriteLine("Choose wich field to mark:");
             Console.WriteLine("x-coordinate (starting with 0): ");
-            coords[0] = (int) Console.Read();
+            coords[0] = int.Parse(Console.ReadLine());
             Console.WriteLine("y-coordinate (starting with 0): ");
-            coords[1] = (int) Console.Read();
-
+            coords[1] = int.Parse(Console.ReadLine());
+            Console.WriteLine();
+            
             return coords;
         }
 
