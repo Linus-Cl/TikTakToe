@@ -13,9 +13,13 @@ namespace TikTakToe
             const int playerNumber = 2;
             const int mapSize = 3;
             Map m = new Map(mapSize);
-            // m.printMap();
             Player[] players = new Player[playerNumber];
             players = createPlayers(playerNumber);
+
+            foreach (Player p in players)
+            {
+                p.FillHeatmapDefault(mapSize);
+            }
 
             for (int i = 0; true; i++)
             {
@@ -40,7 +44,13 @@ namespace TikTakToe
                     Console.WriteLine("Invalid Coordinates! Try again.");
                 }
 
-                m.field[coords[1], coords[0]]= activePlayerIndex;
+                m.field[coords[1], coords[0]] = activePlayerIndex;
+                activeplayer.Heatmap[coords[1], coords[0]]++;
+                if(activeplayer.CheckWinCondition(coords[1], coords[0]))
+                {
+                    Console.WriteLine($"Player {activeplayer.name} won the Game!");
+                    break;
+                }
                 Console.WriteLine();
                 m.printMap();
                 Console.WriteLine();
