@@ -16,27 +16,29 @@ namespace TikTakToe
             Player[] players = new Player[playerNumber];
             players = createPlayers(playerNumber);
 
-            foreach (Player p in players)
-            {
-                p.FillHeatmapDefault(mapSize);
-            }
-
             for (int i = 0; true; i++)
             {
                 int activePlayerIndex = i % playerNumber;
                 Player activeplayer = players[activePlayerIndex];
-                Console.WriteLine("Player " + (activePlayerIndex + 1) + "'s turn.");
+                Console.WriteLine($"{activeplayer.name}'s turn: ");
                 bool validCoords = false;
 
                 int[] coords = { 0, 0 };
 
-                //coords = getCoords();
-
                 while (!validCoords)
                 {
-                    coords = getCoords();
+                    bool skip = false;
+                    try
+                    {
+                        coords = getCoords();
+                    }
+                    catch (Exception)
+                    {
+                        skip = true;
+                        Console.WriteLine("Bad Format");
+                    }
 
-                    if (coords[0] < mapSize && coords[1] < mapSize)
+                    if (!skip && coords[0] < mapSize && coords[1] < mapSize && m.field[coords[1],coords[0]] == -1)
                     {
                         validCoords = true;
                         break;
@@ -45,15 +47,24 @@ namespace TikTakToe
                 }
 
                 m.field[coords[1], coords[0]] = activePlayerIndex;
-                activeplayer.Heatmap[coords[1], coords[0]]++;
-                if(activeplayer.CheckWinCondition(coords[1], coords[0]))
+
+                Console.WriteLine();
+                m.printMap();
+                Console.WriteLine();
+
+                if (m.CheckDraw())
+                {
+                    Console.WriteLine("The game ended in a draw!");
+                    break;
+                }
+                
+                if(m.CheckWinCondition(coords[1], coords[0], activePlayerIndex))
                 {
                     Console.WriteLine($"Player {activeplayer.name} won the Game!");
                     break;
                 }
-                Console.WriteLine();
-                m.printMap();
-                Console.WriteLine();
+
+                
             }
         }
 
@@ -62,10 +73,12 @@ namespace TikTakToe
             int[] coords = new int[2];
             Console.WriteLine("Choose wich field to mark:");
             Console.WriteLine("x-coordinate (starting with 0): ");
-            coords[0] = int.Parse(Console.ReadLine());
-            Console.WriteLine("y-coordinate (starting with 0): ");
-            coords[1] = int.Parse(Console.ReadLine());
-            Console.WriteLine();
+            
+                coords[0] = int.Parse(Console.ReadLine());
+                Console.WriteLine("y-coordinate (starting with 0): ");
+                coords[1] = int.Parse(Console.ReadLine());
+                Console.WriteLine();
+            
             
             return coords;
         }

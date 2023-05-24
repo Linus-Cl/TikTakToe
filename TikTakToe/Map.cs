@@ -6,18 +6,6 @@ using System.Threading.Tasks;
 
 namespace TikTakToe
 {
-
-    public struct CoordinateDirections
-    {
-        public CoordinateDirections(int XDirection, int YDirection)
-        {
-            xDirection = XDirection;    
-            yDirection = YDirection;
-        }
-        public int xDirection { get; }         // -1,0,1
-        public int yDirection { get; }         // -1,0,1
-    }
-
     public class Map
     {
         public int size
@@ -25,6 +13,8 @@ namespace TikTakToe
 
         public int[,] field
         { get; set; }
+
+        public int drawCount = 0;
 
         public Map(int fieldSize)
         {
@@ -40,49 +30,71 @@ namespace TikTakToe
             }
         }
 
-        public bool checkWinConditions()
+        public bool CheckWinCondition(int x, int y, int playerNumber)
         {
-            for (int x = 0; x < size; x++)
+            if(CheckCol(x,playerNumber) || CheckRow(y,playerNumber) || CheckDiagonal1(playerNumber) || CheckDiagonal2(playerNumber))
             {
-                for (int y = 0; y < size; y++)
-                {
-                    if (field[x,y] != -1)
-                    {
-
-                        List<(int,int)> indexPairs = nearbyMatches()
-                    }
-                }
+                return true;
             }
+            return false;
         }
 
-        List<(int, int)> nearbyMatches(CoordinateDirections cd, int playerNum, int x, int y)
+        bool CheckCol(int x, int playerNumber)
         {
-            List<(int, int)> indexPairs = new List<(int, int)>();
-            for (int i = -1; i <= 1; i++)
+            for (int i = 0; i < size; i++)
             {
-                if (x + i >= 0 && x + i < size)
+                if (field[x,i] != playerNumber)
                 {
-                    for (int j = -1; j <= 1; j++)
-                    {
-                        if (y + j >= 0 && y + j < size && !(i == 0 && j == 0))
-                        {
-                            if(field[x+i, y+j] == playerNum)
-                            {
-                                indexPairs.Add((x + i, y + j));
-                            }
-                        }
-                    }
+                    return false;
                 }
-                    
             }
+            return true;
+        }
 
-            foreach (var pair in indexPairs)
+        bool CheckRow(int y, int playerNumber)
+        {
+            for(int i = 0; i<size; i++)
             {
-                if(!(((pair.Item1 - cd.xDirection )== x) || ((pair.Item2 - cd.yDirection) == y)))
+                if (field[i, y] != playerNumber)
                 {
-                    indexPairs.Remove(pair);
+                    return false;
                 }
             }
+            return true;
+        }
+
+        bool CheckDiagonal1(int playerNumber)
+        {
+            for (int i = 0; i < size; i++)
+            {
+                if(field[i,i] != playerNumber)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        bool CheckDiagonal2(int playerNumber)
+        {
+            for (int i = 0; i < size; i++)
+            {
+                if (field[i, size-1-i] != playerNumber)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public bool CheckDraw()
+        {
+            drawCount++;
+            if(drawCount == (size * size))
+            {
+                return true;
+            }
+            return false;
         }
 
         public void printMap()

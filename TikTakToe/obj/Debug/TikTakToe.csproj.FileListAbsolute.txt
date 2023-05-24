@@ -5,3 +5,10 @@ C:\dev\csharp\TikTakToe\TikTakToe\obj\Debug\TikTakToe.csproj.AssemblyReference.c
 C:\dev\csharp\TikTakToe\TikTakToe\obj\Debug\TikTakToe.csproj.CoreCompileInputs.cache
 C:\dev\csharp\TikTakToe\TikTakToe\obj\Debug\TikTakToe.exe
 C:\dev\csharp\TikTakToe\TikTakToe\obj\Debug\TikTakToe.pdb
+C:\dev\csharp\TikTakToe\bin\Debug\TikTakToe.exe.config
+C:\dev\csharp\TikTakToe\bin\Debug\TikTakToe.exe
+C:\dev\csharp\TikTakToe\bin\Debug\TikTakToe.pdb
+C:\dev\csharp\TikTakToe\obj\Debug\TikTakToe.csproj.AssemblyReference.cache
+C:\dev\csharp\TikTakToe\obj\Debug\TikTakToe.csproj.CoreCompileInputs.cache
+C:\dev\csharp\TikTakToe\obj\Debug\TikTakToe.exe
+C:\dev\csharp\TikTakToe\obj\Debug\TikTakToe.pdb
