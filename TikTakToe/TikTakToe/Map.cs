@@ -1,4 +1,8 @@
-﻿using System;
+﻿/* Map.cs
+ * Author: Linus-Cl
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

@@ -1,4 +1,8 @@
-﻿namespace TikTakToe
+﻿/* Player.cs
+ * Author: Linus-Cl
+ */
+
+namespace TikTakToe
 {
     public class Player
     {
