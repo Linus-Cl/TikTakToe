@@ -8,24 +8,24 @@ namespace TikTakToe
 {
     public class Map
     {
-        public int size
+        public int Size
         {get; set;}
 
-        public int[,] field
+        public int[,] Field
         { get; set; }
 
         public int drawCount = 0;
 
         public Map(int fieldSize)
         {
-            size = fieldSize;
-            field = new int[fieldSize, fieldSize];
+            Size = fieldSize;
+            Field = new int[fieldSize, fieldSize];
 
             for(int i = 0; i<fieldSize; i++)
             {
                 for (int j = 0; j < fieldSize; j++)
                 {
-                    field[i, j] = -1;
+                    Field[i, j] = -1;
                 }
             }
         }
@@ -41,9 +41,9 @@ namespace TikTakToe
 
         bool CheckCol(int x, int playerNumber)
         {
-            for (int i = 0; i < size; i++)
+            for (int i = 0; i < Size; i++)
             {
-                if (field[x,i] != playerNumber)
+                if (Field[x,i] != playerNumber)
                 {
                     return false;
                 }
@@ -53,9 +53,9 @@ namespace TikTakToe
 
         bool CheckRow(int y, int playerNumber)
         {
-            for(int i = 0; i<size; i++)
+            for(int i = 0; i<Size; i++)
             {
-                if (field[i, y] != playerNumber)
+                if (Field[i, y] != playerNumber)
                 {
                     return false;
                 }
@@ -65,9 +65,9 @@ namespace TikTakToe
 
         bool CheckDiagonal1(int playerNumber)
         {
-            for (int i = 0; i < size; i++)
+            for (int i = 0; i < Size; i++)
             {
-                if(field[i,i] != playerNumber)
+                if(Field[i,i] != playerNumber)
                 {
                     return false;
                 }
@@ -77,9 +77,9 @@ namespace TikTakToe
 
         bool CheckDiagonal2(int playerNumber)
         {
-            for (int i = 0; i < size; i++)
+            for (int i = 0; i < Size; i++)
             {
-                if (field[i, size-1-i] != playerNumber)
+                if (Field[i, Size-1-i] != playerNumber)
                 {
                     return false;
                 }
@@ -90,7 +90,7 @@ namespace TikTakToe
         public bool CheckDraw()
         {
             drawCount++;
-            if(drawCount == (size * size))
+            if(drawCount == (Size * Size))
             {
                 return true;
             }
@@ -99,30 +99,30 @@ namespace TikTakToe
 
         public void printMap()
         {
-            for (int i = 0; i < size; i++)
+            for (int i = 0; i < Size; i++)
             {
 
-                for (int k = 0; k < size - 1; k++)
+                for (int k = 0; k < Size - 1; k++)
                 {
                     Console.Write("     |");
                 }
                 Console.Write("     ");
                 Console.Write("\n");
 
-                for (int j = 0; j < size; j++)
+                for (int j = 0; j < Size; j++)
                 {
                     char c = ' ';
-                    if (field[i, j] == 0)
+                    if (Field[i, j] == 0)
                     {
                         c = 'X';
                     }
-                    else if (field[i, j] == 1)
+                    else if (Field[i, j] == 1)
                     {
                         c = 'O';
                     }
 
 
-                    if (j == size - 1)
+                    if (j == Size - 1)
                     {
                         Console.Write("  " + c + "  \n");
                         break;
@@ -130,8 +130,8 @@ namespace TikTakToe
                     Console.Write("  " + c + "  |");
                 }
 
-                if (i < size-1) { 
-                    for (int k = 0; k < size - 1; k++)
+                if (i < Size-1) { 
+                    for (int k = 0; k < Size - 1; k++)
                     {
                         Console.Write("_____|");
                     }
@@ -139,7 +139,7 @@ namespace TikTakToe
                 }
                 else
                 {
-                    for (int k = 0; k < size - 1; k++)
+                    for (int k = 0; k < Size - 1; k++)
                     {
                         Console.Write("     |");
                     }
